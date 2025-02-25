@@ -110,9 +110,6 @@
                         <!-- JUnit 5 specific configuration -->
                         <configurationParameters>junit.jupiter.execution.parallel.enabled = true</configurationParameters>
                     </properties>
-                    <systemPropertyVariables>
-                        <java.io.tmpdir>${project.build.directory}/tmp</java.io.tmpdir>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>

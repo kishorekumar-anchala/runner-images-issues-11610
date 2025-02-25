@@ -1,6 +1,6 @@
 name: Maven Package
 
-on: [push] 
+on: [push, workflow_dispatch] 
 
 jobs:
   build:
@@ -20,10 +20,10 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email noreply@github.com
           git config --global init.defaultBranch main
-      - name: Set temporary directory
-        run: echo "java.io.tmpdir=$GITHUB_WORKSPACE/tmp" >> $GITHUB_ENV
       - name: Create temporary directory
-        run: mkdir -p $GITHUB_WORKSPACE/tmp
+        run: mkdir -p $RUNNER_TEMP/tmp
+      - name: Set temporary directory
+        run: echo "java.io.tmpdir=$RUNNER_TEMP/tmp" >> $GITHUB_ENV
       - name: Build with Maven
         id: build-with-maven
         run: |

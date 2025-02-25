@@ -1,4 +1,4 @@
-name: Maven Package
+name: Maven Package-1
 
 on:
   release:

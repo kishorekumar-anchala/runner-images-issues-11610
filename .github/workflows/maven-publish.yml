@@ -28,10 +28,12 @@ jobs:
           echo "java.io.tmpdir=$GITHUB_WORKSPACE/tmp" >> $GITHUB_ENV
       - name: Verify Temporary Directory Permissions
         run: ls -ld $GITHUB_WORKSPACE/tmp
+      - name: Print Environment Variables
+        run: env
       - name: Build with Maven
         id: build-with-maven
         run: |
-          mvn -B package --file pom.xml
+          mvn -B -Djava.io.tmpdir=$GITHUB_WORKSPACE/tmp test
           echo "my_jar=$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout).jar" >> $GITHUB_OUTPUT
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2.18.0

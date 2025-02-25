@@ -22,6 +22,12 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email noreply@github.com
           git config --global init.defaultBranch main
+      - name: Create and Set Temporary Directory
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/tmp
+          echo "java.io.tmpdir=$GITHUB_WORKSPACE/tmp" >> $GITHUB_ENV
+      - name: Verify Temporary Directory Permissions
+        run: ls -ld $GITHUB_WORKSPACE/tmp
       - name: Build with Maven
         id: build-with-maven
         run: |

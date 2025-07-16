@@ -1,0 +1,15 @@
+name: Test
+on:
+  push:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    name: Test
+    runs-on: windows-2022
+    steps:
+      - run: echo "c:/msys64/usr/bin" >> "${GITHUB_PATH}"
+      - run: git config --replace-all --global core.autocrlf false
